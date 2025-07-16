@@ -1,17 +1,14 @@
-import { StyleSheet, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { StatusBar } from 'react-native';
+import Routes from './src/routes';
 
 function App() {
-  return <View style={styles.container}></View>;
+  return (
+    <NavigationContainer>
+      <StatusBar backgroundColor ={'#1A1A2E'}barStyle={'light-content'} translucent={true} />
+      <Routes />
+    </NavigationContainer>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#dcdcdc',
-    width:30,
-    height:20,
-    flexBasis
-  },
-});
 
 export default App;
