@@ -1,13 +1,28 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { AuthContext } from '../../contexts/auth';
 
 function LogIn() {
   const [login, setLogin] = useState(true);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { signUp, sigIn } = useContext(AuthContext);
 
   function toggleLogin() {
     setLogin(!login);
   }
 
+  async function handleSignUp() {
+
+    if(email === '' || password === '' || name === '') return;
+    await signUp(email, password, name);
+  }
+
+  async function handelSigIn() {
+    if(email === '' || password === '') return;
+    await sigIn(email, password);
+  }
   if (login) {
     return (
       <View style={styles.Container}>
@@ -15,16 +30,20 @@ function LogIn() {
           My<Text style={{ color: '#9B5DE5', fontStyle: 'italic' }}>Tasks</Text>
         </Text>
         <TextInput
+          value={email}
+          onChangeText={(value) => setEmail(value)}
           style={styles.Input}
           placeholder="Seu email..."
           placeholderTextColor={'#dcdcdc'}
         />
         <TextInput
+          value={password}
+          onChangeText={(value) => setPassword(value)}
           style={styles.Input}
           placeholder="Sua senha..."
           placeholderTextColor={'#dcdcdc'}
         />
-        <TouchableOpacity style={styles.Button} activeOpacity={0.8}>
+        <TouchableOpacity style={styles.Button} activeOpacity={0.8} onPress={handelSigIn}>
           <Text style={{ fontSize: 18, color: '#fff' }}>Login</Text>
         </TouchableOpacity>
 
@@ -39,10 +58,29 @@ function LogIn() {
       <Text style={styles.Title}>
         My<Text style={{ color: '#9B5DE5', fontStyle: 'italic' }}>Tasks</Text>
       </Text>
-      <TextInput style={styles.Input} placeholder="Seu nome..." placeholderTextColor={'#dcdcdc'} />
-      <TextInput style={styles.Input} placeholder="test@test.com" placeholderTextColor={'#dcdcdc'} />
-      <TextInput style={styles.Input} placeholder="************" placeholderTextColor={'#dcdcdc'} secureTextEntry={true} />
-      <TouchableOpacity style={styles.Button} activeOpacity={0.8}>
+      <TextInput
+        value={name}
+        onChangeText={(value) => setName(value)}
+        style={styles.Input}
+        placeholder="Seu nome..."
+        placeholderTextColor={'#dcdcdc'}
+      />
+      <TextInput
+        value={email}
+        onChangeText={(value) => setEmail(value)}
+        style={styles.Input}
+        placeholder="test@test.com"
+        placeholderTextColor={'#dcdcdc'}
+      />
+      <TextInput
+        value={password}
+        onChangeText={(value) => setPassword(value)}
+        style={styles.Input}
+        placeholder="************"
+        placeholderTextColor={'#dcdcdc'}
+        secureTextEntry={true}
+      />
+      <TouchableOpacity style={styles.Button} activeOpacity={0.8} onPress={handleSignUp}>
         <Text style={{ fontSize: 18, color: '#fff' }}>Criar conta</Text>
       </TouchableOpacity>
 
