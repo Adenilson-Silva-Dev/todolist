@@ -32,6 +32,8 @@ function LogIn() {
         <TextInput
           value={email}
           onChangeText={(value) => setEmail(value)}
+          onSubmitEditing={handelSigIn}
+          returnKeyType='done'
           style={styles.Input}
           placeholder="Seu email..."
           placeholderTextColor={'#dcdcdc'}
@@ -39,11 +41,13 @@ function LogIn() {
         <TextInput
           value={password}
           onChangeText={(value) => setPassword(value)}
+          onSubmitEditing={handelSigIn}
+          returnKeyType='done'
           style={styles.Input}
           placeholder="Sua senha..."
           placeholderTextColor={'#dcdcdc'}
         />
-        <TouchableOpacity style={styles.Button} activeOpacity={0.8} onPress={handelSigIn}>
+        <TouchableOpacity style={styles.Button} activeOpacity={0.8}>
           <Text style={{ fontSize: 18, color: '#fff' }}>Login</Text>
         </TouchableOpacity>
 
