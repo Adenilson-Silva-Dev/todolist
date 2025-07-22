@@ -1,10 +1,12 @@
 import { useContext, useState } from 'react';
 import {
   ActivityIndicator,
+  Keyboard,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import { AuthContext } from '../../contexts/auth';
@@ -31,80 +33,84 @@ function LogIn() {
   }
   if (login) {
     return (
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <View style={styles.Container}>
+          <Text style={styles.Title}>
+            My<Text style={{ color: '#9B5DE5', fontStyle: 'italic' }}>Tasks</Text>
+          </Text>
+          <TextInput
+            value={email}
+            onChangeText={(value) => setEmail(value)}
+            onSubmitEditing={handelSigIn}
+            returnKeyType="done"
+            style={styles.Input}
+            placeholder="Seu email..."
+            placeholderTextColor={'#dcdcdc'}
+          />
+          <TextInput
+            value={password}
+            onChangeText={(value) => setPassword(value)}
+            onSubmitEditing={handelSigIn}
+            returnKeyType="done"
+            style={styles.Input}
+            placeholder="Sua senha..."
+            placeholderTextColor={'#dcdcdc'}
+          />
+
+          {loading ? (
+            <TouchableOpacity style={styles.Button} activeOpacity={0.8} onPress={handelSigIn}>
+              <ActivityIndicator size={'large'} color={'#fff'} />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity style={styles.Button} activeOpacity={0.8} onPress={handelSigIn}>
+              <Text style={{ fontSize: 18, color: '#fff' }}>Login</Text>
+            </TouchableOpacity>
+          )}
+
+          <TouchableOpacity style={styles.ButtonLink} activeOpacity={0.6} onPress={toggleLogin}>
+            <Text style={styles.TextLink}>Criar uma conta</Text>
+          </TouchableOpacity>
+        </View>
+      </TouchableWithoutFeedback>
+    );
+  }
+  return (
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.Container}>
         <Text style={styles.Title}>
           My<Text style={{ color: '#9B5DE5', fontStyle: 'italic' }}>Tasks</Text>
         </Text>
         <TextInput
+          value={name}
+          onChangeText={(value) => setName(value)}
+          style={styles.Input}
+          placeholder="Seu nome..."
+          placeholderTextColor={'#dcdcdc'}
+        />
+        <TextInput
           value={email}
           onChangeText={(value) => setEmail(value)}
-          onSubmitEditing={handelSigIn}
-          returnKeyType="done"
           style={styles.Input}
-          placeholder="Seu email..."
+          placeholder="test@test.com"
           placeholderTextColor={'#dcdcdc'}
         />
         <TextInput
           value={password}
           onChangeText={(value) => setPassword(value)}
-          onSubmitEditing={handelSigIn}
-          returnKeyType="done"
           style={styles.Input}
-          placeholder="Sua senha..."
+          placeholder="************"
           placeholderTextColor={'#dcdcdc'}
+          secureTextEntry={true}
         />
-
-        {loading ? (
-          <TouchableOpacity style={styles.Button} activeOpacity={0.8} onPress={handelSigIn}>
-            <ActivityIndicator size={'large'} color={'#fff'} />
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity style={styles.Button} activeOpacity={0.8} onPress={handelSigIn}>
-            <Text style={{ fontSize: 18, color: '#fff' }}>Login</Text>
-          </TouchableOpacity>
-        )}
+        <TouchableOpacity style={styles.Button} activeOpacity={0.8} onPress={handleSignUp}>
+          <Text style={{ fontSize: 18, color: '#fff' }}>Criar conta</Text>
+        </TouchableOpacity>
 
         <TouchableOpacity style={styles.ButtonLink} activeOpacity={0.6} onPress={toggleLogin}>
-          <Text style={styles.TextLink}>Criar uma conta</Text>
+          <Text style={styles.TextLink}>Fazer login</Text>
         </TouchableOpacity>
       </View>
-    );
-  }
-  return (
-    <View style={styles.Container}>
-      <Text style={styles.Title}>
-        My<Text style={{ color: '#9B5DE5', fontStyle: 'italic' }}>Tasks</Text>
-      </Text>
-      <TextInput
-        value={name}
-        onChangeText={(value) => setName(value)}
-        style={styles.Input}
-        placeholder="Seu nome..."
-        placeholderTextColor={'#dcdcdc'}
-      />
-      <TextInput
-        value={email}
-        onChangeText={(value) => setEmail(value)}
-        style={styles.Input}
-        placeholder="test@test.com"
-        placeholderTextColor={'#dcdcdc'}
-      />
-      <TextInput
-        value={password}
-        onChangeText={(value) => setPassword(value)}
-        style={styles.Input}
-        placeholder="************"
-        placeholderTextColor={'#dcdcdc'}
-        secureTextEntry={true}
-      />
-      <TouchableOpacity style={styles.Button} activeOpacity={0.8} onPress={handleSignUp}>
-        <Text style={{ fontSize: 18, color: '#fff' }}>Criar conta</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.ButtonLink} activeOpacity={0.6} onPress={toggleLogin}>
-        <Text style={styles.TextLink}>Fazer login</Text>
-      </TouchableOpacity>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
