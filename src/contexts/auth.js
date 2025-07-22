@@ -51,6 +51,7 @@ function AuthProvider({ children }) {
         });
     } catch (err) {
       console.log(err);
+      setLoading(false)
     }
   }
 
@@ -75,6 +76,7 @@ function AuthProvider({ children }) {
         });
     } catch (err) {
       console.log('Error ao logar usuário! ', err);
+      setLoading(false)
     }
   }
 

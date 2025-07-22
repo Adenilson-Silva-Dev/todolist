@@ -20,6 +20,9 @@ function LogIn() {
 
   function toggleLogin() {
     setLogin(!login);
+    setName('');
+    setEmail('');
+    setPassword('');
   }
 
   async function handleSignUp() {
