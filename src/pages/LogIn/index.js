@@ -1,5 +1,12 @@
 import { useContext, useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { AuthContext } from '../../contexts/auth';
 
 function LogIn() {
@@ -7,20 +14,19 @@ function LogIn() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { signUp, sigIn } = useContext(AuthContext);
+  const { signUp, sigIn, loading } = useContext(AuthContext);
 
   function toggleLogin() {
     setLogin(!login);
   }
 
   async function handleSignUp() {
-
-    if(email === '' || password === '' || name === '') return;
+    if (email === '' || password === '' || name === '') return;
     await signUp(email, password, name);
   }
 
   async function handelSigIn() {
-    if(email === '' || password === '') return;
+    if (email === '' || password === '') return;
     await sigIn(email, password);
   }
   if (login) {
@@ -33,7 +39,7 @@ function LogIn() {
           value={email}
           onChangeText={(value) => setEmail(value)}
           onSubmitEditing={handelSigIn}
-          returnKeyType='done'
+          returnKeyType="done"
           style={styles.Input}
           placeholder="Seu email..."
           placeholderTextColor={'#dcdcdc'}
@@ -42,14 +48,21 @@ function LogIn() {
           value={password}
           onChangeText={(value) => setPassword(value)}
           onSubmitEditing={handelSigIn}
-          returnKeyType='done'
+          returnKeyType="done"
           style={styles.Input}
           placeholder="Sua senha..."
           placeholderTextColor={'#dcdcdc'}
         />
-        <TouchableOpacity style={styles.Button} activeOpacity={0.8}>
-          <Text style={{ fontSize: 18, color: '#fff' }}>Login</Text>
-        </TouchableOpacity>
+
+        {loading ? (
+          <TouchableOpacity style={styles.Button} activeOpacity={0.8} onPress={handelSigIn}>
+            <ActivityIndicator size={'large'} color={'#fff'} />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={styles.Button} activeOpacity={0.8} onPress={handelSigIn}>
+            <Text style={{ fontSize: 18, color: '#fff' }}>Login</Text>
+          </TouchableOpacity>
+        )}
 
         <TouchableOpacity style={styles.ButtonLink} activeOpacity={0.6} onPress={toggleLogin}>
           <Text style={styles.TextLink}>Criar uma conta</Text>

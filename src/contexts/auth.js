@@ -7,6 +7,7 @@ export const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function loadStorange() {
@@ -19,6 +20,7 @@ function AuthProvider({ children }) {
     loadStorange();
   }, []);
   async function signUp(email, password, name) {
+    setLoading(true);
     try {
       await auth()
         .createUserWithEmailAndPassword(email, password)
@@ -40,10 +42,12 @@ function AuthProvider({ children }) {
 
               setUser(data);
               storangeUser(data);
+              setLoading(false);
             });
         })
         .catch((err) => {
-          console.log(err);
+          console.log('Error ao cadastrar usuario!', err);
+          setLoading(false);
         });
     } catch (err) {
       console.log(err);
@@ -51,6 +55,7 @@ function AuthProvider({ children }) {
   }
 
   async function sigIn(email, password) {
+    setLoading(true);
     try {
       await auth()
         .signInWithEmailAndPassword(email, password)
@@ -66,9 +71,10 @@ function AuthProvider({ children }) {
 
           setUser(data);
           storangeUser(data);
+          setLoading(false);
         });
     } catch (err) {
-      console.log(err);
+      console.log('Error ao logar usuário! ', err);
     }
   }
 
@@ -78,14 +84,14 @@ function AuthProvider({ children }) {
       await AsyncStorage.removeItem('@mytask');
       setUser(null);
     } catch (err) {
-      console.log('Erro ao sair', err);
+      console.log('Erro ao sair da conta!', err);
     }
   }
   async function storangeUser(data) {
     await AsyncStorage.setItem('@mytask', JSON.stringify(data));
   }
   return (
-    <AuthContext.Provider value={{ signed: !!user, user, signUp, sigIn, signOut }}>
+    <AuthContext.Provider value={{ signed: !!user, user, signUp, sigIn, signOut, loading }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,17 +1,54 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 function NewTask() {
   return (
     <View style={styles.Container}>
-      <Text>Tela NewTask</Text>
+      <View style={styles.AreaInput}>
+        <TextInput
+          style={styles.Input}
+          maxLength={50}
+          autoCorrect={false}
+          multiline={true}
+          placeholder="Digite uma tarefa..."
+          placeholderTextColor={'#dddd'}
+        />
+        <TouchableOpacity style={styles.ButtonAdd} activeOpacity={.8}>
+          <Icon name="add" size={30} color={'#fff'} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  Container:{
-    flex:1,
-    backgroundColor:'#1A1A2E'
+  Container: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#1A1A2E',
+  },
+  AreaInput: {
+    width: '100%',
+    justifyContent:'space-between',
+    flexDirection: 'row',
+  },
+  Input: {
+    width: '80%',
+    height:60,
+    fontSize: 22,
+    left: 8,
+    borderWidth: 0.5,
+    borderColor: '#ddd',
+    color: '#fff',
+  },
+  ButtonAdd:{
+    width:60,
+    height:60,
+    alignItems:'center',
+    justifyContent: 'center',
+    borderRadius:'100%',
+    right:'2%',
+    backgroundColor: 'rgba(155, 93, 229, 0.6)',
   }
-})
+});
 export default NewTask;
