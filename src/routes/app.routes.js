@@ -37,23 +37,23 @@ function AppRoutes() {
         },
       }}
     >
-      <Tab.Screen 
-      options={{
-        tabBarIcon:({size, color})=>{
-          return <Icon name="assignment" size={size} color={color} />;
-        }
-      }}
-      name="StackHome" component={StackHome} />
-
       <Tab.Screen
         options={{
           tabBarIcon: ({ size, color }) => {
-            return <Icon name="home" size={size} color={color} />;
+            return <Icon name="assignment" size={size} color={color} />;
           },
         }}
         name="FinishedTask"
         component={FinishedTasks}
       />
+      <Tab.Screen 
+      options={{
+        tabBarIcon:({size, color})=>{
+          return <Icon name="home" size={size} color={color} />;
+        }
+      }}
+      name="StackHome" component={StackHome} />
+
       <Tab.Screen
         options={{
           tabBarIcon: ({ size, color }) => {
