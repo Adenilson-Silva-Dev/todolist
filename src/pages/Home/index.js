@@ -1,11 +1,13 @@
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+import Header from '../../components/Header';
 
 function Home() {
   const navigation = useNavigation();
   return (
     <View style={styles.Container}>
+      <Header/>
       <TouchableOpacity style={styles.ButtonPlus} onPress={() => navigation.navigate('NewTask')}>
         <Icon name="plus" size={30} color={'#fff'} />
       </TouchableOpacity>
