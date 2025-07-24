@@ -1,33 +1,57 @@
-import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, TouchableOpacity, View,Text } from 'react-native';
+import firestore from '@react-native-firebase/firestore';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useCallback, useState } from 'react';
+import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import Header from '../../components/Header';
-import { useState } from 'react';
-import { FlatList } from 'react-native';
 import ListTasks from '../../components/ListTasks';
 
 function Home() {
- const [post, setPost] = useState([
-  { id: '1', task: 'Estudar Java' },
-  { id: '2', task: 'Estudar React Native' },
-  { id: '3', task: 'Praticar algoritmos e lógica' },
-  { id: '4', task: 'Fazer um app simples com CRUD' },
-  { id: '5', task: 'Estudar banco de dados (SQLite ou Firebase)' },
-  { id: '6', task: 'Aprender Git e GitHub' },
-  { id: '7', task: 'Assistir uma aula sobre API REST' },
-  { id: '8', task: 'Implementar autenticação no app' },
-  { id: '9', task: 'Melhorar o design usando StyleSheet' },
-  { id: '10', task: 'Publicar um projeto no GitHub' },
-]);
+  const [task, setTask] = useState([]);
 
   const navigation = useNavigation();
+
+  //Exibir tarefas na tela
+  useFocusEffect(
+    useCallback(() => {
+      let isActive = true;
+      async function fetchTasks() {
+        if (isActive) {
+          setTask([]);
+          const taskList = [];
+
+          await firestore()
+            .collection('tasks')
+            .orderBy('createdAt', 'desc')
+            .limit(10)
+            .get()
+            .then((snapshot) => {
+              snapshot.docs.map((t) => {
+                taskList.push({
+                  ...t.data(),
+                  id: t.id,
+                });
+              });
+            });
+          setTask(taskList);
+         
+          
+        }
+      }
+
+      fetchTasks();
+      return () => {
+        isActive = false;
+      };
+    }, [])
+  );
   return (
     <View style={styles.Container}>
-      <Header/>
+      <Header />
       <FlatList
-      showsVerticalScrollIndicator={false}
-      data={post}
-      renderItem={({item})=> <ListTasks data={item}/>}
+        showsVerticalScrollIndicator={false}
+        data={task}
+        renderItem={({ item }) => <ListTasks data={item} />}
       />
       <TouchableOpacity style={styles.ButtonPlus} onPress={() => navigation.navigate('NewTask')}>
         <Icon name="plus" size={30} color={'#fff'} />

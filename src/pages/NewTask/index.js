@@ -1,5 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 import storange from '@react-native-firebase/storage';
+import { useNavigation } from '@react-navigation/native';
 import { useContext, useState } from 'react';
 import {
   Keyboard,
@@ -14,6 +15,7 @@ import { AuthContext } from '../../contexts/auth';
 function NewTask() {
   const [task, setTask] = useState('');
   const { user } = useContext(AuthContext);
+  const navigation = useNavigation();
 
   async function handleTask() {
     // Verificar se o campo da TASK está vazio;
@@ -44,6 +46,7 @@ function NewTask() {
       .then(() => {
         setTask('');
         console.log('Tarefa criada com sucesso!');
+        navigation.goBack();
       })
       .catch((err) => {
         console.log('Error ao criar tarefas! ', err);

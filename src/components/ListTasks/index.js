@@ -1,11 +1,14 @@
+import { useContext } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+import { AuthContext } from '../../contexts/auth';
 
 function ListTasks({ data }) {
+  const {user} = useContext(AuthContext)
   return (
     <View style={styles.Container}>
       <View style={styles.AreaTask}>
-        <Text numberOfLines={2} style={styles.TitleTask}>{data.task}</Text>
+        <Text numberOfLines={2} style={styles.TitleTask}>{data.tast}</Text>
         <View style={styles.AreaIcons}>
           <TouchableOpacity style={styles.ButtonIcon}>
             <Icon name="square" size={30} color="#000" />
