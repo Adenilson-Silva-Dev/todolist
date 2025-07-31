@@ -1,12 +1,14 @@
 import firestore from '@react-native-firebase/firestore';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { useCallback, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import Header from '../../components/Header';
 import ListTasks from '../../components/ListTasks';
+import { AuthContext } from '../../contexts/auth';
 
 function Home() {
+  const {user} = useContext(AuthContext)
   const [task, setTask] = useState([]);
 
   const navigation = useNavigation();
@@ -23,7 +25,7 @@ function Home() {
           await firestore()
             .collection('tasks')
             .orderBy('createdAt', 'desc')
-            .limit(10)
+            .limit(50)
             .get()
             .then((snapshot) => {
               snapshot.docs.map((t) => {
@@ -45,13 +47,27 @@ function Home() {
       };
     }, [])
   );
+
+  async function completeTask(item){
+    console.log(item)
+    await firestore().collection('finishedTask').add({
+      finishedAt: new Date(),
+      title:item.task,
+      autor:user?.name,
+      userId: user?.uid
+    }).then(()=>{
+      console.log('Task finalizada com sucesso!')
+    }).catch((error)=>{
+      console.log('Error ao finalizar task ', error)
+    })
+  }
   return (
     <View style={styles.Container}>
       <Header />
       <FlatList
         showsVerticalScrollIndicator={false}
         data={task}
-        renderItem={({ item }) => <ListTasks data={item} />}
+        renderItem={({ item }) => <ListTasks data={item} finishedTask={()=>completeTask(item)}/>}
       />
       <TouchableOpacity style={styles.ButtonPlus} onPress={() => navigation.navigate('NewTask')}>
         <Icon name="plus" size={30} color={'#fff'} />

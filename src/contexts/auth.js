@@ -8,6 +8,7 @@ export const AuthContext = createContext({});
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [task, setTask] = useState('')
 
   useEffect(() => {
     async function loadStorange() {
@@ -93,7 +94,7 @@ function AuthProvider({ children }) {
     await AsyncStorage.setItem('@mytask', JSON.stringify(data));
   }
   return (
-    <AuthContext.Provider value={{ signed: !!user, user, signUp, sigIn, signOut, loading }}>
+    <AuthContext.Provider value={{ signed: !!user, user, signUp, sigIn, signOut, loading,task, setTask }}>
       {children}
     </AuthContext.Provider>
   );

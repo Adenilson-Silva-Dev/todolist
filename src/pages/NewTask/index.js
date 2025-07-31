@@ -1,7 +1,7 @@
 import firestore from '@react-native-firebase/firestore';
 import storange from '@react-native-firebase/storage';
 import { useNavigation } from '@react-navigation/native';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import {
   Keyboard,
   StyleSheet,
@@ -13,8 +13,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { AuthContext } from '../../contexts/auth';
 function NewTask() {
-  const [task, setTask] = useState('');
-  const { user } = useContext(AuthContext);
+  const { user, task, setTask } = useContext(AuthContext);
   const navigation = useNavigation();
 
   async function handleTask() {
@@ -38,7 +37,7 @@ function NewTask() {
       .collection('tasks')
       .add({
         createdAt: new Date(),
-        tast: task,
+        task: task,
         autor: user?.name,
         userId: user.uid,
         avatarUrl,
@@ -60,9 +59,7 @@ function NewTask() {
             value={task}
             onChangeText={(text) => setTask(text)}
             style={styles.Input}
-            maxLength={50}
-            autoCorrect={false}
-            multiline={true}
+           
             placeholder="Digite uma tarefa..."
             placeholderTextColor={'#dddd'}
           />

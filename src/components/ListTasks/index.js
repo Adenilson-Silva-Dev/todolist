@@ -3,15 +3,20 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { AuthContext } from '../../contexts/auth';
 
-function ListTasks({ data }) {
-  const {user} = useContext(AuthContext)
+function ListTasks({ data, finishedTask }) {
+  const { user } = useContext(AuthContext);
   return (
     <View style={styles.Container}>
       <View style={styles.AreaTask}>
-        <Text numberOfLines={2} style={styles.TitleTask}>{data.tast}</Text>
+        <Text numberOfLines={2} style={styles.TitleTask}>
+          {data.task}
+        </Text>
         <View style={styles.AreaIcons}>
-          <TouchableOpacity style={styles.ButtonIcon}>
+          <TouchableOpacity style={styles.ButtonIcon} onPress={finishedTask}>
             <Icon name="square" size={30} color="#000" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.ButtonIcon} onPress={finishedTask}>
+            <Icon name="edit-3" size={30} color="#000" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.ButtonIcon}>
             <Icon name="trash-2" size={30} color="#000" />
@@ -38,18 +43,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderLeftColor: '#9B5DE5',
     borderRadius: 10,
-    borderLeftWidth:7,
+    borderLeftWidth: 7,
   },
-  TitleTask:{
-    width:'70%',
-    fontSize:18,
-    fontStyle:'italic',
-    fontWeight:'700',
-    left:8
+  TitleTask: {
+    width: '70%',
+    fontSize: 18,
+    fontStyle: 'italic',
+    fontWeight: '700',
+    left: 8,
   },
   AreaIcons: {
-    width: '25%',
-    marginLeft:8,
+    width: '30%',
+    marginRight: 10,
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
