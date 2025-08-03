@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import { useNavigation } from '@react-navigation/native';
 import { createContext, useEffect, useState } from 'react';
 
 export const AuthContext = createContext({});
@@ -8,7 +9,10 @@ export const AuthContext = createContext({});
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [task, setTask] = useState('')
+  const [inputTask, setInputTask] = useState('');
+  const [isEditingTask, setIsEditingTask] = useState('')
+ 
+
 
   useEffect(() => {
     async function loadStorange() {
@@ -52,7 +56,7 @@ function AuthProvider({ children }) {
         });
     } catch (err) {
       console.log(err);
-      setLoading(false)
+      setLoading(false);
     }
   }
 
@@ -77,7 +81,7 @@ function AuthProvider({ children }) {
         });
     } catch (err) {
       console.log('Error ao logar usuário! ', err);
-      setLoading(false)
+      setLoading(false);
     }
   }
 
@@ -93,8 +97,19 @@ function AuthProvider({ children }) {
   async function storangeUser(data) {
     await AsyncStorage.setItem('@mytask', JSON.stringify(data));
   }
+
+   
+
+   async function handleUpdateTask(){
+    await firestore().collection('tasks').doc(isEditingTask).update({
+      task:inputTask
+    })
+    
+  }
   return (
-    <AuthContext.Provider value={{ signed: !!user, user, signUp, sigIn, signOut, loading,task, setTask }}>
+    <AuthContext.Provider
+      value={{ signed: !!user, user, signUp, sigIn, signOut, loading, inputTask, setInputTask,isEditingTask, setIsEditingTask,handleUpdateTask }}
+    >
       {children}
     </AuthContext.Provider>
   );

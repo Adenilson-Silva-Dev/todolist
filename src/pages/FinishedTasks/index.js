@@ -8,7 +8,6 @@ import FinishedList from '../../components/finishedList';
 function FinishedTasks() {
   const [task, setTask] = useState([]);
 
-  console.log(task);
   useFocusEffect(
     useCallback(() => {
       async function fetchFinished() {

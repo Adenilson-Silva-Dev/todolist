@@ -13,13 +13,13 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { AuthContext } from '../../contexts/auth';
 function NewTask() {
-  const { user, task, setTask } = useContext(AuthContext);
+  const { user, inputTask, setInputTask,isEditingTask, handleUpdateTask } = useContext(AuthContext);
   const navigation = useNavigation();
 
   async function handleTask() {
     // Verificar se o campo da TASK está vazio;
 
-    if (task === '') {
+    if (inputTask === '') {
       alert('Favor inserir uma tarefa!');
       return;
     }
@@ -37,13 +37,13 @@ function NewTask() {
       .collection('tasks')
       .add({
         createdAt: new Date(),
-        task: task,
+        task: inputTask,
         autor: user?.name,
         userId: user.uid,
         avatarUrl,
       })
       .then(() => {
-        setTask('');
+        setInputTask('');
         console.log('Tarefa criada com sucesso!');
         navigation.goBack();
       })
@@ -56,16 +56,21 @@ function NewTask() {
       <View style={styles.Container}>
         <View style={styles.AreaInput}>
           <TextInput
-            value={task}
-            onChangeText={(text) => setTask(text)}
+            value={inputTask}
+            onChangeText={(text) => setInputTask(text)}
             style={styles.Input}
-           
             placeholder="Digite uma tarefa..."
             placeholderTextColor={'#dddd'}
           />
-          <TouchableOpacity style={styles.ButtonAdd} activeOpacity={0.8} onPress={handleTask}>
+          {isEditingTask !== '' ? (
+            <TouchableOpacity style={styles.ButtonAdd} activeOpacity={0.8} onPress={()=>handleUpdateTask() & navigation.navigate("Home")} >
+            <Icon name="check" size={30} color={'#fff'} />
+          </TouchableOpacity>
+          ):(
+            <TouchableOpacity style={styles.ButtonAdd} activeOpacity={0.8} onPress={handleTask}>
             <Icon name="add" size={30} color={'#fff'} />
           </TouchableOpacity>
+          )}
         </View>
       </View>
     </TouchableNativeFeedback>

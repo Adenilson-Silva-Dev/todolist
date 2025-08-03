@@ -8,7 +8,7 @@ import ListTasks from '../../components/ListTasks';
 import { AuthContext } from '../../contexts/auth';
 
 function Home() {
-  const {user} = useContext(AuthContext)
+  const { user,inputTask,setInputTask, isEditingTask, setIsEditingTask} = useContext(AuthContext);
   const [task, setTask] = useState([]);
 
   const navigation = useNavigation();
@@ -36,9 +36,6 @@ function Home() {
               });
             });
           setTask(taskList);
-          
-         
-          
         }
       }
 
@@ -49,27 +46,40 @@ function Home() {
     }, [])
   );
 
-  async function completeTask(item){
-    console.log(item)
-    await firestore().collection('finishedTask').add({
-      finishedAt: new Date(),
-      title:item.task,
-      autor:user?.name,
-      userId: user?.uid
-    }).then(()=>{
-      console.log('Task finalizada com sucesso!')
-    }).catch((error)=>{
-      console.log('Error ao finalizar task ', error)
-    })
+  async function completeTask(item) {
+    console.log(item);
+    await firestore()
+      .collection('finishedTask')
+      .add({
+        finishedAt: new Date(),
+        title: item.task,
+        autor: user?.name,
+        userId: user?.uid,
+      })
+      .then(() => {
+        console.log('Task finalizada com sucesso!');
+      })
+      .catch((error) => {
+        console.log('Error ao finalizar task ', error);
+      });
   }
 
-  async function deleteTask(idTask){
-    try{
+   function updateTask(data) {
+    
+    setInputTask(data.task)
+    setIsEditingTask(data.id)
+    navigation.navigate('NewTask')
+  
+  }
+
+ 
+  async function deleteTask(idTask) {
+    try {
       await firestore().collection('tasks').doc(idTask).delete();
-      setTask(valueTask => valueTask.filter(task => task.id != idTask));
-      console.log(idTask)
-    }catch(err){
-      console.log('Error ao deletar tarefas')
+      setTask((valueTask) => valueTask.filter((task) => task.id != idTask));
+      console.log(idTask);
+    } catch (err) {
+      console.log('Error ao deletar tarefas');
     }
   }
   return (
@@ -78,7 +88,14 @@ function Home() {
       <FlatList
         showsVerticalScrollIndicator={false}
         data={task}
-        renderItem={({ item }) => <ListTasks data={item} finishedTask={()=>completeTask(item)} deleteTask={()=>deleteTask(item.id)}/>}
+        renderItem={({ item }) => (
+          <ListTasks
+            data={item}
+            finishedTask={() => completeTask(item)}
+            deleteTask={() => deleteTask(item.id)}
+            editTask={() => updateTask(item)}
+          />
+        )}
       />
       <TouchableOpacity style={styles.ButtonPlus} onPress={() => navigation.navigate('NewTask')}>
         <Icon name="plus" size={30} color={'#fff'} />
