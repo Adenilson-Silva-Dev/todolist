@@ -3,7 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { AuthContext } from '../../contexts/auth';
 
-function ListTasks({ data, finishedTask }) {
+function ListTasks({ data, finishedTask, deleteTask }) {
   const { user } = useContext(AuthContext);
   return (
     <View style={styles.Container}>
@@ -15,10 +15,10 @@ function ListTasks({ data, finishedTask }) {
           <TouchableOpacity style={styles.ButtonIcon} onPress={finishedTask}>
             <Icon name="square" size={30} color="#000" />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.ButtonIcon} onPress={finishedTask}>
+          <TouchableOpacity style={styles.ButtonIcon} >
             <Icon name="edit-3" size={30} color="#000" />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.ButtonIcon}>
+          <TouchableOpacity style={styles.ButtonIcon} onPress={deleteTask}>
             <Icon name="trash-2" size={30} color="#000" />
           </TouchableOpacity>
         </View>

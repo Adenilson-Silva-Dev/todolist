@@ -36,6 +36,7 @@ function Home() {
               });
             });
           setTask(taskList);
+          
          
           
         }
@@ -61,13 +62,23 @@ function Home() {
       console.log('Error ao finalizar task ', error)
     })
   }
+
+  async function deleteTask(idTask){
+    try{
+      await firestore().collection('tasks').doc(idTask).delete();
+      setTask(valueTask => valueTask.filter(task => task.id != idTask));
+      console.log(idTask)
+    }catch(err){
+      console.log('Error ao deletar tarefas')
+    }
+  }
   return (
     <View style={styles.Container}>
       <Header />
       <FlatList
         showsVerticalScrollIndicator={false}
         data={task}
-        renderItem={({ item }) => <ListTasks data={item} finishedTask={()=>completeTask(item)}/>}
+        renderItem={({ item }) => <ListTasks data={item} finishedTask={()=>completeTask(item)} deleteTask={()=>deleteTask(item.id)}/>}
       />
       <TouchableOpacity style={styles.ButtonPlus} onPress={() => navigation.navigate('NewTask')}>
         <Icon name="plus" size={30} color={'#fff'} />
