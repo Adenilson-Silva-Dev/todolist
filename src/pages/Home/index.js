@@ -6,9 +6,11 @@ import Icon from 'react-native-vector-icons/Feather';
 import Header from '../../components/Header';
 import ListTasks from '../../components/ListTasks';
 import { AuthContext } from '../../contexts/auth';
+import { TaskContext } from '../../contexts/taskContext';
 
 function Home() {
-  const { user,inputTask,setInputTask, isEditingTask, setIsEditingTask} = useContext(AuthContext);
+  const { user} = useContext(AuthContext);
+  const {setInputTask, setIsEditingTask} = useContext(TaskContext)
   const [task, setTask] = useState([]);
 
   const navigation = useNavigation();
@@ -58,6 +60,7 @@ function Home() {
       })
       .then(() => {
         console.log('Task finalizada com sucesso!');
+        deleteTask(item.id)
       })
       .catch((error) => {
         console.log('Error ao finalizar task ', error);

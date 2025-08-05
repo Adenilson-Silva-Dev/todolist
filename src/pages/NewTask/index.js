@@ -12,8 +12,10 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { AuthContext } from '../../contexts/auth';
+import { TaskContext } from '../../contexts/taskContext';
 function NewTask() {
-  const { user, inputTask, setInputTask,isEditingTask, handleUpdateTask } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  const {inputTask, setInputTask,isEditingTask, handleUpdateTask} = useContext(TaskContext)
   const navigation = useNavigation();
 
   async function handleTask() {
@@ -93,6 +95,7 @@ const styles = StyleSheet.create({
     height: 60,
     fontSize: 22,
     left: 8,
+    padding:8,
     borderWidth: 0.5,
     borderColor: '#ddd',
     color: '#fff',

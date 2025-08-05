@@ -9,8 +9,7 @@ export const AuthContext = createContext({});
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [inputTask, setInputTask] = useState('');
-  const [isEditingTask, setIsEditingTask] = useState('')
+  
  
 
 
@@ -100,15 +99,10 @@ function AuthProvider({ children }) {
 
    
 
-   async function handleUpdateTask(){
-    await firestore().collection('tasks').doc(isEditingTask).update({
-      task:inputTask
-    })
-    
-  }
+ 
   return (
     <AuthContext.Provider
-      value={{ signed: !!user, user, signUp, sigIn, signOut, loading, inputTask, setInputTask,isEditingTask, setIsEditingTask,handleUpdateTask }}
+      value={{ signed: !!user, user, signUp, sigIn, signOut, loading }}
     >
       {children}
     </AuthContext.Provider>
