@@ -6,15 +6,16 @@ import { AuthContext } from '../../contexts/auth';
 
 function Profile() {
   const { signOut, user } = useContext(AuthContext);
-
+  console.log('oi');
   async function handleSignOut() {
     await signOut();
+     
   }
   return (
     <View style={styles.Container}>
       <Header />
-      <TouchableOpacity style={styles.ButtonAvatar} activeOpacity={.7}>
-        <Icon name="person" size={150} color={'#9B5DE5'}/>
+      <TouchableOpacity style={styles.ButtonAvatar} activeOpacity={0.7}>
+        <Icon name="person" size={150} color={'#9B5DE5'} />
       </TouchableOpacity>
 
       <Text numberOfLines={1} style={styles.name}>
@@ -50,17 +51,17 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 20,
   },
-  ButtonAvatar:{
-    width:200,
-    height:200,
-    alignItems:'center',
-    justifyContent:'center',
-    borderWidth:5,
-    borderColor:'#9B5DE5',
-    borderRadius:200 * 10,
-    marginTop:24,
-    marginBottom:8,
-    backgroundColor:'#fff'
+  ButtonAvatar: {
+    width: 200,
+    height: 200,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 5,
+    borderColor: '#9B5DE5',
+    borderRadius: 200 * 10,
+    marginTop: 24,
+    marginBottom: 8,
+    backgroundColor: '#fff',
   },
   Avatar: {
     width: 200,

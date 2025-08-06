@@ -12,14 +12,16 @@ const Stack = createNativeStackNavigator();
 function AppRoutes() {
   function StackHome() {
     return (
-      <Stack.Navigator screenOptions={{
-        headerStyle:{
-          backgroundColor: '#1A1A2E'
-        },
-        headerTintColor:'#fff'
-      }}>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#1A1A2E',
+          },
+          headerTintColor: '#fff',
+        }}
+      >
         <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
-        <Stack.Screen options={{title:'Adicionar tarefas'}} name="NewTask" component={NewTask} />
+        <Stack.Screen options={{ title: 'Adicionar tarefas' }} name="NewTask" component={NewTask} />
       </Stack.Navigator>
     );
   }
@@ -29,7 +31,7 @@ function AppRoutes() {
         headerShown: false,
         tabBarHideOnKeyboard: true, // quando aparecer um teclado a tabBar se esconde
         tabBarShowLabel: false,
-        tabBarActiveTintColor: '#ffffffff',
+        tabBarActiveTintColor: 'rgba(117, 4, 255, 0.9)',
 
         tabBarStyle: {
           backgroundColor: '#070407ff',
@@ -46,13 +48,24 @@ function AppRoutes() {
         name="FinishedTask"
         component={FinishedTasks}
       />
-      <Tab.Screen 
-      options={{
-        tabBarIcon:({size, color})=>{
-          return <Icon name="home" size={size} color={color} />;
-        }
-      }}
-      name="StackHome" component={StackHome} />
+      <Tab.Screen
+        options={{
+          
+          tabBarIcon: ({ size, color }) => {
+            return <Icon name="home" size={size} color={color} />;
+          },
+
+          tabBarIconStyle:{
+            width:50,
+            height:50,
+            top:-15,
+            borderRadius:100,
+            backgroundColor:'#fff'
+          }
+        }}
+        name="StackHome"
+        component={StackHome}
+      />
 
       <Tab.Screen
         options={{
