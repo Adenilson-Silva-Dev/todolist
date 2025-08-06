@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View,Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Header from '../../components/Header';
 import { AuthContext } from '../../contexts/auth';
@@ -15,7 +15,7 @@ function Profile() {
     <View style={styles.Container}>
       <Header />
       <TouchableOpacity style={styles.ButtonAvatar} activeOpacity={0.7}>
-        <Icon name="person" size={150} color={'#9B5DE5'} />
+        <Image source={require('../../imgs/cici.jpg')} style={styles.Avatar}/>
       </TouchableOpacity>
 
       <Text numberOfLines={1} style={styles.name}>
