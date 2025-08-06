@@ -1,13 +1,6 @@
 # 📱 MyTasks - Aplicativo de Gerenciamento de Tarefas
 
-<div align="center">
-  <img src="./src/imgs/cici.jpg" alt="MyTasks Logo" width="200" height="200" style="border-radius: 50%;">
-  
-  [![React Native](https://img.shields.io/badge/React%20Native-0.80.1-blue.svg)](https://reactnative.dev/)
-  [![Firebase](https://img.shields.io/badge/Firebase-Authentication%20%7C%20Firestore-orange.svg)](https://firebase.google.com/)
-  [![AsyncStorage](https://img.shields.io/badge/AsyncStorage-1.24.0-green.svg)](https://github.com/react-native-async-storage/async-storage)
-  [![React Navigation](https://img.shields.io/badge/React%20Navigation-7.1.14-purple.svg)](https://reactnavigation.org/)
-</div>
+
 
 ## 🧠 Objetivo do Projeto
 
@@ -21,6 +14,58 @@ O **MyTasks** é um aplicativo mobile desenvolvido em React Native que permite a
 - 🎨 **Interface Moderna**: Design responsivo com tema escuro e elementos visuais atrativos
 - 📱 **Navegação Intuitiva**: Sistema de navegação por abas para fácil acesso às funcionalidades
 - 🔄 **Sincronização em Tempo Real**: Dados sincronizados automaticamente com o Firebase
+
+## 🛠️ Tecnologias Utilizadas
+
+<div align="center">
+  <h3>🚀 Stack Tecnológica</h3>
+</div>
+
+### 📱 **Frontend & Mobile**
+| Tecnologia | Versão | Descrição |
+|------------|--------|-----------|
+| ![React Native](https://img.shields.io/badge/React%20Native-0.80.1-blue?style=for-the-badge&logo=react) | 0.80.1 | Framework mobile multiplataforma |
+| ![React](https://img.shields.io/badge/React-19.1.0-blue?style=for-the-badge&logo=react) | 19.1.0 | Biblioteca JavaScript para UI |
+
+### 🔥 **Backend & Banco de Dados**
+| Tecnologia | Versão | Descrição |
+|------------|--------|-----------|
+| ![Firebase](https://img.shields.io/badge/Firebase-Authentication-orange?style=for-the-badge&logo=firebase) | 22.4.0 | Autenticação de usuários |
+| ![Firestore](https://img.shields.io/badge/Firestore-Database-orange?style=for-the-badge&logo=firebase) | 22.4.0 | Banco de dados NoSQL em tempo real |
+| ![Firebase Storage](https://img.shields.io/badge/Firebase%20Storage-Files-orange?style=for-the-badge&logo=firebase) | 22.4.0 | Armazenamento de arquivos |
+
+### 🧭 **Navegação**
+| Tecnologia | Versão | Descrição |
+|------------|--------|-----------|
+| ![React Navigation](https://img.shields.io/badge/React%20Navigation-7.1.14-purple?style=for-the-badge&logo=react) | 7.1.14 | Sistema de navegação principal |
+| ![Stack Navigator](https://img.shields.io/badge/Stack%20Navigator-7.3.21-purple?style=for-the-badge) | 7.3.21 | Navegação em pilha |
+| ![Bottom Tabs](https://img.shields.io/badge/Bottom%20Tabs-7.4.2-purple?style=for-the-badge) | 7.4.2 | Navegação por abas |
+
+### 💾 **Armazenamento Local**
+| Tecnologia | Versão | Descrição |
+|------------|--------|-----------|
+| ![AsyncStorage](https://img.shields.io/badge/AsyncStorage-1.24.0-green?style=for-the-badge) | 1.24.0 | Armazenamento local persistente |
+
+### 🎨 **UI/UX & Ícones**
+| Tecnologia | Versão | Descrição |
+|------------|--------|-----------|
+| ![Vector Icons](https://img.shields.io/badge/Vector%20Icons-10.2.0-blue?style=for-the-badge) | 10.2.0 | Ícones vetoriais |
+| ![Safe Area](https://img.shields.io/badge/Safe%20Area-5.5.2-blue?style=for-the-badge) | 5.5.2 | Área segura para dispositivos |
+
+### 🛠️ **Ferramentas de Desenvolvimento**
+| Tecnologia | Versão | Descrição |
+|------------|--------|-----------|
+| ![ESLint](https://img.shields.io/badge/ESLint-9.31.0-yellow?style=for-the-badge&logo=eslint) | 9.31.0 | Linting de código JavaScript |
+| ![Prettier](https://img.shields.io/badge/Prettier-2.8.8-pink?style=for-the-badge&logo=prettier) | 2.8.8 | Formatação automática de código |
+| ![Stylelint](https://img.shields.io/badge/Stylelint-16.21.1-blue?style=for-the-badge) | 16.21.1 | Linting de estilos CSS |
+| ![Jest](https://img.shields.io/badge/Jest-29.6.3-red?style=for-the-badge&logo=jest) | 29.6.3 | Framework de testes |
+
+---
+
+<div align="center">
+  <h4>🎯 Arquitetura do Projeto</h4>
+  <p><em>React Native + Firebase + AsyncStorage + React Navigation</em></p>
+</div>
 
 ## 🏗️ Arquitetura do Projeto
 
@@ -41,89 +86,22 @@ src/
 └── imgs/               # Imagens e assets
 ```
 
-## 🔧 Tecnologias Utilizadas
-
-### 🚀 Core Technologies
-- **[React Native 0.80.1](https://reactnative.dev/)**: Framework para desenvolvimento mobile multiplataforma
-- **[React 19.1.0](https://reactjs.org/)**: Biblioteca JavaScript para interfaces de usuário
-
-### 🔥 Firebase Services
-- **[@react-native-firebase/app](https://rnfirebase.io/)**: SDK principal do Firebase
-- **[@react-native-firebase/auth](https://rnfirebase.io/auth)**: Autenticação de usuários
-- **[@react-native-firebase/firestore](https://rnfirebase.io/firestore)**: Banco de dados NoSQL em tempo real
-- **[@react-native-firebase/storage](https://rnfirebase.io/storage)**: Armazenamento de arquivos
-
-### 🧭 Navegação
-- **[@react-navigation/native](https://reactnavigation.org/)**: Sistema de navegação principal
-- **[@react-navigation/stack](https://reactnavigation.org/docs/stack-navigator/)**: Navegação em pilha
-- **[@react-navigation/bottom-tabs](https://reactnavigation.org/docs/bottom-tab-navigator/)**: Navegação por abas
-
-### 💾 Armazenamento Local
-- **[@react-native-async-storage/async-storage](https://github.com/react-native-async-storage/async-storage)**: Armazenamento local persistente
-
-### 🎨 UI/UX
-- **[react-native-vector-icons](https://github.com/oblador/react-native-vector-icons)**: Ícones vetoriais
-- **[react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context)**: Área segura para diferentes dispositivos
-
-### 🛠️ Development Tools
-- **ESLint**: Linting de código JavaScript
-- **Prettier**: Formatação automática de código
-- **Stylelint**: Linting de estilos CSS
-
 ## 🔐 Sistema de Autenticação
 
-### 📋 Fluxo de Autenticação
+O MyTasks utiliza o Firebase Authentication para autenticar usuários com e-mail e senha. O controle da sessão é feito com `AsyncStorage` para manter o usuário logado mesmo ao fechar o app.
 
-O sistema de autenticação do MyTasks é robusto e seguro, implementado com Firebase Authentication e persistência local:
+### 📋 Como funciona:
 
-#### 1. **Registro de Usuário**
-```javascript
-// Criação de conta com email/senha
-await auth().createUserWithEmailAndPassword(email, password)
-  .then(async (value) => {
-    // Criação do perfil no Firestore
-    await firestore().collection('users').doc(uid).set({
-      name: name,
-      createdAt: new Date(),
-    });
-    // Armazenamento local da sessão
-    storangeUser(data);
-  });
-```
+1. O usuário se registra informando nome, e-mail e senha.
+2. Os dados são autenticados pelo Firebase.
+3. O perfil do usuário é salvo no Firestore.
+4. A sessão é armazenada localmente com `AsyncStorage`.
+5. Ao abrir o app novamente, o estado do usuário é verificado:
+   - Se houver uma sessão ativa, o usuário vai direto para a tela principal.
+   - Caso contrário, é redirecionado para a tela de login.
+6. O logout limpa os dados locais e encerra a sessão no Firebase.
 
-#### 2. **Login de Usuário**
-```javascript
-// Autenticação com email/senha
-await auth().signInWithEmailAndPassword(email, password)
-  .then(async (value) => {
-    // Busca dados do perfil no Firestore
-    const userProfile = await firestore().collection('users').doc(uid).get();
-    // Armazenamento local da sessão
-    storangeUser(data);
-  });
-```
-
-#### 3. **Persistência de Sessão**
-- **AsyncStorage**: Armazena dados do usuário localmente com a chave `@mytask`
-- **Recuperação Automática**: Ao abrir o app, verifica se existe sessão salva
-- **Redirecionamento Inteligente**: Direciona para Home se logado, ou Login se não logado
-
-#### 4. **Logout**
-```javascript
-// Limpeza completa da sessão
-await auth().signOut();
-await AsyncStorage.removeItem('@mytask');
-setUser(null);
-```
-
-### 🔄 Controle de Estado
-
-O contexto `AuthContext` gerencia todo o estado de autenticação:
-
-- **Estado do Usuário**: Dados do usuário logado
-- **Estado de Loading**: Indicadores de carregamento durante operações
-- **Funções de Autenticação**: signUp, sigIn, signOut
-- **Persistência**: storangeUser para salvar dados localmente
+O estado da autenticação é gerenciado pelo `AuthContext`, que disponibiliza as funções de login, registro e logout para todo o app.
 
 ## 📱 Funcionalidades do App
 
@@ -158,7 +136,7 @@ O contexto `AuthContext` gerencia todo o estado de autenticação:
 ### 📱 Screenshots das Telas
 
 #### 🔐 Tela de Login/Registro
-![Tela de Login/Registro](./screenshots/login-register.png)
+![Tela de Login/Registro](./src/imgs/cadastro.png)
 
 **Características:**
 - Design minimalista com logo "MyTasks" (roxo e branco)
@@ -168,7 +146,7 @@ O contexto `AuthContext` gerencia todo o estado de autenticação:
 - Interface limpa e intuitiva com tema escuro
 
 #### 🔐 Tela de Login
-![Tela de Login](./screenshots/login.png)
+![Tela de Login](./src/imgs/Login.png)
 
 **Características:**
 - Logo "MyTasks" centralizado (roxo e branco)
@@ -178,17 +156,17 @@ O contexto `AuthContext` gerencia todo o estado de autenticação:
 - Design consistente com tema escuro
 
 #### 🏠 Tela Principal (Home)
-![Tela Principal](./screenshots/home.png)
+![Tela Principal](./src/imgs/Tela_tarefas_a_fazer.png)
 
 **Características:**
 - Header com logo "MyTasks" em fundo roxo escuro
-- Card branco com tarefa "Estudar Spring Boot"
+- Lista de tarefas com cards brancos
 - Ícones de ação: quadrado (concluir), lápis (editar), lixeira (excluir)
 - Botão flutuante roxo com ícone "+" no canto inferior direito
 - Navegação por abas: lista, home (ativo), perfil
 
 #### ➕ Tela de Nova Tarefa
-![Nova Tarefa](./screenshots/new-task.png)
+![Nova Tarefa](./src/imgs/Tela_Adicionar_tarefa.png)
 
 **Características:**
 - Header "Adicionar tarefas" com botão voltar
@@ -197,42 +175,30 @@ O contexto `AuthContext` gerencia todo o estado de autenticação:
 - Navegação por abas na parte inferior
 - Interface focada na criação de tarefas
 
-#### ➕ Tela de Edição de Tarefa
-![Edição de Tarefa](./screenshots/edit-task.png)
-
-**Características:**
-- Campo de texto com tarefa "Estudar Javascript e React Native"
-- Botão de confirmação para salvar edições
-- Header "MyTesks" com navegação
-- Suporte para edição de tarefas existentes
-- Design consistente com tema escuro
-
 #### 👤 Tela de Perfil
-![Perfil do Usuário](./screenshots/profile.png)
+![Perfil do Usuário](./src/imgs/Tela_perfil.png)
 
 **Características:**
 - Header "MyTesks" com separador branco
-- Avatar circular do usuário (Adenilson) com borda roxa
-- Nome "Adenilson" em texto branco
-- Email "adenilson@test.com" em texto branco
+- Avatar circular do usuário com borda roxa
+- Informações pessoais do usuário em texto branco
 - Botão "Sair" com borda roxa e fundo escuro
 - Navegação por abas com perfil ativo (ícone roxo)
 
 #### ✅ Tela de Tarefas Concluídas
-![Tarefas Concluídas](./screenshots/finished-tasks.png)
+![Tarefas Concluídas](./src/imgs/Tela_tarefas_finalizadas.png)
 
 **Características:**
 - Lista de tarefas com texto riscado
 - Indicador visual de conclusão
 - Ordenação por data de finalização
 - Histórico de atividades
-- *Nota: Screenshot não enviada - usar placeholder*
+- Interface consistente com o tema escuro
 
 ### 📱 Fluxo de Navegação Visual
 
 <div align="center">
-  <img src="./screenshots/navigation-flow.png" alt="Fluxo de Navegação" width="600">
-  <p><em>Fluxo completo de navegação do aplicativo</em></p>
+  <p><em>Fluxo de navegação: Login → Home → Nova Tarefa → Editar Tarefa → Tarefas Concluídas → Perfil</em></p>
 </div>
 
 ## 🚀 Como Executar o Projeto
@@ -261,7 +227,7 @@ O contexto `AuthContext` gerencia todo o estado de autenticação:
 
 ```bash
 # 1. Clonar o repositório
-git clone https://github.com/seu-usuario/todoList.git
+git clone https://github.com/Adenilson-Silva-Dev/todolist.git
 cd todoList
 
 # 2. Instalar dependências
@@ -300,42 +266,6 @@ npx react-native start
   "test": "jest"
 }
 ```
-
-## 📁 Estrutura de Dados
-
-### 👤 Usuários (Firestore Collection: `users`)
-```javascript
-{
-  uid: "string",           // ID único do usuário
-  name: "string",          // Nome completo
-  email: "string",         // Email do usuário
-  createdAt: "timestamp"   // Data de criação da conta
-}
-```
-
-### 📝 Tarefas (Firestore Collection: `tasks`)
-```javascript
-{
-  id: "string",            // ID único da tarefa
-  task: "string",          // Descrição da tarefa
-  autor: "string",         // Nome do autor
-  userId: "string",        // ID do usuário criador
-  createdAt: "timestamp",  // Data de criação
-  avatarUrl: "string"      // URL do avatar (opcional)
-}
-```
-
-### ✅ Tarefas Concluídas (Firestore Collection: `finishedTask`)
-```javascript
-{
-  id: "string",            // ID único
-  title: "string",         // Título da tarefa
-  autor: "string",         // Nome do autor
-  userId: "string",        // ID do usuário
-  finishedAt: "timestamp"  // Data de conclusão
-}
-```
-
 ## 🔄 Fluxo de Navegação
 
 ```
@@ -355,47 +285,6 @@ App.js
             │   └── Profile
 ```
 
-## 🛡️ Segurança
-
-### 🔐 Firebase Security Rules
-Recomendações para as regras do Firestore:
-
-```javascript
-// Regras para usuários
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    // Usuários só podem ler/editar seus próprios dados
-    match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-    }
-    
-    // Tarefas só podem ser acessadas pelo criador
-    match /tasks/{taskId} {
-      allow read, write: if request.auth != null && 
-        request.auth.uid == resource.data.userId;
-    }
-    
-    // Tarefas concluídas seguem a mesma regra
-    match /finishedTask/{taskId} {
-      allow read, write: if request.auth != null && 
-        request.auth.uid == resource.data.userId;
-    }
-  }
-}
-```
-
-## 🧪 Testes
-
-O projeto inclui configuração básica de testes com Jest:
-
-```bash
-# Executar testes
-npm test
-
-# Executar testes em modo watch
-npm test -- --watch
-```
 
 ## 📝 Contribuição
 
@@ -411,20 +300,11 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 👨‍💻 Autor
 
-**Seu Nome**
-- GitHub: [@seu-usuario](https://github.com/seu-usuario)
-- LinkedIn: [Seu LinkedIn](https://linkedin.com/in/seu-perfil)
+**Adenilson Silva**
+- GitHub: [@Adenilson-Silva-Dev](https://github.com/Adenilson-Silva-Dev)
+- LinkedIn: [Adenilson Rosa](https://www.linkedin.com/in/adenilson-rosa-88702125a/)
 
-## 🙏 Agradecimentos
-
-- [React Native](https://reactnative.dev/) pela excelente documentação
-- [Firebase](https://firebase.google.com/) pelos serviços robustos
-- [React Navigation](https://reactnavigation.org/) pela navegação fluida
-- Comunidade React Native pelo suporte contínuo
-
----
 
 <div align="center">
   <p>Feito com ❤️ e ☕</p>
-  <p>Se este projeto te ajudou, considere dar uma ⭐</p>
 </div>
