@@ -9,8 +9,8 @@ import { AuthContext } from '../../contexts/auth';
 import { TaskContext } from '../../contexts/taskContext';
 
 function Home() {
-  const { user} = useContext(AuthContext);
-  const {setInputTask, setIsEditingTask} = useContext(TaskContext)
+  const { user } = useContext(AuthContext);
+  const { setInputTask, setIsEditingTask } = useContext(TaskContext);
   const [task, setTask] = useState([]);
 
   const navigation = useNavigation();
@@ -18,34 +18,26 @@ function Home() {
   //Exibir tarefas na tela
   useFocusEffect(
     useCallback(() => {
-      let isActive = true;
-      async function fetchTasks() {
-        if (isActive) {
-          setTask([]);
-          const taskList = [];
+      const unsubscribe = firestore()
+        .collection('tasks')
+        .where('userId', '==', user.uid)
+        .orderBy('createdAt', 'desc')
+        .limit(50)
+        .onSnapshot(
+          (snapshot) => {
+            const taskList = snapshot.docs.map((doc) => ({
+              ...doc.data(),
+              id: doc.id,
+            }));
+            setTask(taskList);
+          },
+          (err) => {
+            console.log('Erro ao adicionar tarefa ', err);
+          }
+        );
 
-          await firestore()
-            .collection('tasks')
-            .orderBy('createdAt', 'desc')
-            .limit(50)
-            .get()
-            .then((snapshot) => {
-              snapshot.docs.map((t) => {
-                taskList.push({
-                  ...t.data(),
-                  id: t.id,
-                });
-              });
-            });
-          setTask(taskList);
-        }
-      }
-
-      fetchTasks();
-      return () => {
-        isActive = false;
-      };
-    }, [])
+      return () => unsubscribe();
+    }, [user.uid])
   );
 
   async function completeTask(item) {
@@ -60,22 +52,19 @@ function Home() {
       })
       .then(() => {
         console.log('Task finalizada com sucesso!');
-        deleteTask(item.id)
+        deleteTask(item.id);
       })
       .catch((error) => {
         console.log('Error ao finalizar task ', error);
       });
   }
 
-   function updateTask(data) {
-    
-    setInputTask(data.task)
-    setIsEditingTask(data.id)
-    navigation.navigate('NewTask')
-  
+  function updateTask(data) {
+    setInputTask(data.task);
+    setIsEditingTask(data.id);
+    navigation.navigate('NewTask');
   }
 
- 
   async function deleteTask(idTask) {
     try {
       await firestore().collection('tasks').doc(idTask).delete();
